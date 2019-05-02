@@ -35,6 +35,7 @@ tar -C vendor/gsl -xvf gsl-$GSL_VERSION.tar.gz
 export LD_LIBRARY_PATH="$BUILD_DIR/vendor/gsl/lib/:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="$BUILD_DIR/vendor/gsl/lib/pkgconfig"
 sed -i.bak "s/\/usr\/local/vendor\/gsl/g" $BUILD_DIR/vendor/gsl/lib/pkgconfig/gsl.pc
+export CPATH=$BUILD_DIR/vendor/gsl/include
 
 #Compiling
 mkdir build
