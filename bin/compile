@@ -33,6 +33,7 @@ wget -O  gsl-$GSL_VERSION.tar.gz https://github.com/gregory/heroku-gsl-buildpack
 mkdir -p vendor/gsl
 tar -C vendor/gsl -xvf gsl-$GSL_VERSION.tar.gz
 export LD_LIBRARY_PATH="$BUILD_DIR/vendor/gsl/lib/:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="$BUILD_DIR/vendor/gsl/lib/pkgconfig"
 
 #Compiling
 mkdir build
