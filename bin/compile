@@ -52,5 +52,10 @@ sed -i.bak "s/stdout=PIPE/stdout=PIPE, env=dict(os.environ, LD_LIBRARY_PATH=\"ve
 echo "-----> setting up python"
 mkdir temp
 echo 'web: gunicorn -b :$PORT main:app' > Procfile
-echo "python-3.6.5" > runtime.txt
+echo "python-3.6.8" > runtime.txt
 echo "" > requirements.txt
+
+#cleanup
+echo "-----> Cleanup files"
+rm -rf vendor/cmake-3.8.1-Linux-x86_64
+rm -rf vendor/gsl/include
