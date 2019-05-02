@@ -6,6 +6,8 @@ set -o pipefail
 
 BUILD_DIR=$1
 CACHE_DIR=$2
+ENV_DIR=${3:-}
+BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
 function indent() {
   c='s/^/       /'
@@ -16,6 +18,14 @@ function indent() {
 }
 
 cd $BUILD_DIR
+
+echo "Installing CMAKE" | indent
+mkdir -p deps
+curl --retry 3 https://cmake.org/files/v3.8/cmake-3.8.1-Linux-x86_64.tar.gz --output deps/cmake-3.8.1-Linux-x86_64.tar.gz
+tar xzf deps/cmake-3.8.1-Linux-x86_64.tar.gz -C deps
+$BUILD_DIR/deps/cmake-3.8.1-Linux-x86_64/bin/cmake --version
+
+
 
 # configure
 if [ -f configure ]; then
