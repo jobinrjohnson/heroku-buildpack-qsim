@@ -47,3 +47,9 @@ echo "-----> Compiling with Make"
 make 2>&1 | indent
 cd ..
 
+#set up python
+echo "-----> setting up python"
+mkdir temp
+echo 'web: gunicorn -b :$PORT main:app' > Procfile
+echo "python-3.6.5" > runtime.txt
+echo "" > requirements.txt
