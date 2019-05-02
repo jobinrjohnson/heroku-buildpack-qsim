@@ -48,6 +48,7 @@ make 2>&1 | indent
 cd ..
 
 #set up python
+sed -i.bak "s/stdout=PIPE/stdout=PIPE, env=dict(os.environ, LD_LIBRARY_PATH=\"vendor\/gsl\/lib\")/g" main.py
 echo "-----> setting up python"
 mkdir temp
 echo 'web: gunicorn -b :$PORT main:app' > Procfile
