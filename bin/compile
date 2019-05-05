@@ -49,11 +49,12 @@ cd ..
 
 #set up python
 sed -i.bak "s/stdout=PIPE/stdout=PIPE, env=dict(os.environ, LD_LIBRARY_PATH=\"vendor\/gsl\/lib\")/g" main.py
-echo "-----> setting up python"
+echo "-----> setting up source code."
 mkdir temp
 echo 'web: gunicorn -b :$PORT main:app' > Procfile
 echo "python-3.6.8" > runtime.txt
 echo "" > requirements.txt
+sed -i.bak "s/var cacheName = 'qsim';/var cacheName = 'qsim$SOURCE_VERSION';/g" $BUILD_DIR/web/sw.js
 
 #cleanup
 echo "-----> Cleanup files"
